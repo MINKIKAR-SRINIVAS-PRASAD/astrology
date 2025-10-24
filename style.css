@@ -1,0 +1,1243 @@
+/* ========================================
+   COSMIC ASTROLOGY - MAIN STYLESHEET
+   ======================================== */
+
+/* === ROOT VARIABLES === */
+:root {
+    --primary-color: #6b4ce6;
+    --secondary-color: #ff6b9d;
+    --accent-color: #ffd700;
+    --dark-bg: #0a0a1f;
+    --darker-bg: #050510;
+    --card-bg: rgba(20, 20, 50, 0.8);
+    --text-light: #ffffff;
+    --text-muted: #b8b9d1;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --glow-primary: 0 0 20px rgba(107, 76, 230, 0.5);
+    --glow-secondary: 0 0 20px rgba(255, 107, 157, 0.5);
+    --glow-accent: 0 0 30px rgba(255, 215, 0, 0.6);
+}
+
+/* === GLOBAL STYLES === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-light);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+}
+
+/* === LOADING SCREEN === */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--darker-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+#loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.cosmic-loader {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+}
+
+.planet {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: var(--gradient-1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: var(--glow-primary);
+    animation: planetPulse 2s ease-in-out infinite;
+}
+
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(107, 76, 230, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: rotate 3s linear infinite;
+}
+
+.orbit::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    box-shadow: var(--glow-accent);
+}
+
+.loading-text {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+/* === NAVIGATION === */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 10, 31, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(107, 76, 230, 0.2);
+}
+
+.navbar.scrolled {
+    padding: 0.5rem 0;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.logo i {
+    color: var(--accent-color);
+    animation: moonGlow 3s ease-in-out infinite;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-1);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--text-light);
+    transition: all 0.3s ease;
+}
+
+/* === HERO SECTION === */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}
+
+/* Starry Background */
+.stars-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.stars, .stars2, .stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.stars {
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, white, transparent),
+        radial-gradient(2px 2px at 60px 70px, white, transparent),
+        radial-gradient(1px 1px at 50px 50px, white, transparent),
+        radial-gradient(1px 1px at 130px 80px, white, transparent),
+        radial-gradient(2px 2px at 90px 10px, white, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: twinkle 5s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+.stars2 {
+    background-image: 
+        radial-gradient(1px 1px at 40px 60px, white, transparent),
+        radial-gradient(1px 1px at 110px 90px, white, transparent),
+        radial-gradient(2px 2px at 150px 30px, white, transparent);
+    background-repeat: repeat;
+    background-size: 250px 250px;
+    animation: twinkle 7s ease-in-out infinite;
+    opacity: 0.5;
+}
+
+.stars3 {
+    background-image: 
+        radial-gradient(1px 1px at 70px 40px, white, transparent),
+        radial-gradient(2px 2px at 170px 80px, white, transparent),
+        radial-gradient(1px 1px at 120px 120px, white, transparent);
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    animation: twinkle 10s ease-in-out infinite;
+    opacity: 0.3;
+}
+
+/* Shooting Stars */
+.shooting-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.shooting-star {
+    position: absolute;
+    top: -50px;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    opacity: 0;
+    animation: shootingStar 3s ease-in-out infinite;
+}
+
+.shooting-star:nth-child(1) {
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.shooting-star:nth-child(2) {
+    left: 50%;
+    animation-delay: 3s;
+}
+
+.shooting-star:nth-child(3) {
+    left: 80%;
+    animation-delay: 5s;
+}
+
+/* Hero Content */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #fff, #a78bfa, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textShimmer 3s ease-in-out infinite;
+}
+
+.glitch {
+    position: relative;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.cta-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    background: var(--gradient-1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(107, 76, 230, 0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(107, 76, 230, 0.5);
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Floating Elements */
+.floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.moon-phase {
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #f0e68c 0%, #daa520 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 60px rgba(240, 230, 140, 0.8);
+    animation: float 6s ease-in-out infinite;
+}
+
+.constellation {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    opacity: 0.3;
+}
+
+.constellation-1 {
+    top: 20%;
+    left: 5%;
+    animation: float 8s ease-in-out infinite;
+}
+
+.constellation-2 {
+    bottom: 15%;
+    right: 5%;
+    animation: float 10s ease-in-out infinite 2s;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.mouse {
+    width: 26px;
+    height: 40px;
+    border: 2px solid var(--text-light);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+    margin: 0 auto 10px;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--text-light);
+    border-radius: 2px;
+    animation: scroll 1.5s ease-in-out infinite;
+}
+
+.scroll-indicator p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* === SECTION STYLES === */
+section {
+    padding: 6rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+/* === ZODIAC SECTION === */
+.zodiac-section {
+    background: radial-gradient(ellipse at center, rgba(107, 76, 230, 0.1) 0%, transparent 70%);
+}
+
+.zodiac-wheel-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+    perspective: 1000px;
+}
+
+.zodiac-wheel {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    animation: rotate 60s linear infinite;
+}
+
+.wheel-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background: var(--gradient-1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    box-shadow: 0 0 40px rgba(107, 76, 230, 0.8);
+    z-index: 10;
+}
+
+.zodiac-signs {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.zodiac-sign {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: var(--card-bg);
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: rotate 60s linear infinite reverse;
+}
+
+.zodiac-sign:hover {
+    transform: scale(1.2);
+    background: var(--gradient-1);
+    box-shadow: var(--glow-primary);
+}
+
+.zodiac-sign i {
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+}
+
+.zodiac-sign span {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.zodiac-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.zodiac-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.zodiac-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.zodiac-card:hover::before {
+    left: 100%;
+}
+
+.zodiac-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 15px 40px rgba(107, 76, 230, 0.3);
+}
+
+.zodiac-card-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.zodiac-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.zodiac-date {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.zodiac-card p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* === HOROSCOPE SECTION === */
+.horoscope-section {
+    background: var(--darker-bg);
+}
+
+.horoscope-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.horoscope-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    height: 350px;
+    perspective: 1000px;
+}
+
+.horoscope-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.horoscope-card.flipped .horoscope-card-inner {
+    transform: rotateY(180deg);
+}
+
+.horoscope-card-front,
+.horoscope-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.horoscope-card-front {
+    background: var(--gradient-1);
+    border: 2px solid var(--primary-color);
+}
+
+.horoscope-card-back {
+    background: var(--card-bg);
+    border: 2px solid var(--secondary-color);
+    transform: rotateY(180deg);
+    overflow-y: auto;
+}
+
+.horoscope-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.horoscope-card h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.horoscope-content {
+    width: 100%;
+    text-align: left;
+}
+
+.horoscope-content h4 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.horoscope-detail {
+    margin-bottom: 1rem;
+}
+
+.horoscope-detail strong {
+    color: var(--primary-color);
+}
+
+.flip-instruction {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+}
+
+/* === PLANETS SECTION === */
+.planets-section {
+    background: radial-gradient(ellipse at center, rgba(255, 107, 157, 0.1) 0%, transparent 70%);
+    min-height: 100vh;
+}
+
+.solar-system {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 800px;
+    margin: 0 auto;
+}
+
+.sun-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.sun {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #ffd700, #ff8c00);
+    border-radius: 50%;
+    box-shadow: 0 0 60px rgba(255, 215, 0, 0.8);
+    animation: sunPulse 4s ease-in-out infinite;
+}
+
+.orbit-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(107, 76, 230, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.orbit-1 { width: 140px; height: 140px; animation: rotate 8s linear infinite; }
+.orbit-2 { width: 200px; height: 200px; animation: rotate 12s linear infinite; }
+.orbit-3 { width: 270px; height: 270px; animation: rotate 16s linear infinite; }
+.orbit-4 { width: 350px; height: 350px; animation: rotate 20s linear infinite; }
+.orbit-5 { width: 450px; height: 450px; animation: rotate 28s linear infinite; }
+.orbit-6 { width: 560px; height: 560px; animation: rotate 36s linear infinite; }
+
+.planet {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.planet:hover {
+    transform: translateX(-50%) scale(1.5);
+    box-shadow: 0 0 30px currentColor;
+}
+
+.planet-name {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.planet:hover .planet-name {
+    opacity: 1;
+}
+
+.planet-mercury { background: #8c7853; }
+.planet-venus { background: #ffd700; }
+.planet-earth { background: #4169e1; }
+.planet-mars { background: #cd5c5c; }
+.planet-jupiter { background: #daa520; width: 30px; height: 30px; top: -15px; }
+.planet-saturn { background: #f4a460; width: 25px; height: 25px; top: -12px; position: relative; }
+
+.saturn-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 10px;
+    border: 2px solid rgba(244, 164, 96, 0.6);
+    border-radius: 50%;
+}
+
+.planet-info {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.planet-info h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.planet-details {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2rem;
+    min-height: 150px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* === BIRTH CHART SECTION === */
+.birth-chart-section {
+    background: var(--darker-bg);
+}
+
+.birth-chart-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.chart-form-wrapper {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 2px solid var(--primary-color);
+}
+
+.birth-chart-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.form-group i {
+    color: var(--primary-color);
+}
+
+.form-group input {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(107, 76, 230, 0.3);
+    border-radius: 10px;
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(107, 76, 230, 0.3);
+}
+
+.submit-button {
+    padding: 1rem 2rem;
+    background: var(--gradient-1);
+    border: none;
+    border-radius: 50px;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(107, 76, 230, 0.4);
+}
+
+.chart-result-wrapper {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2.5rem;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--secondary-color);
+}
+
+.chart-result-content {
+    text-align: center;
+    width: 100%;
+}
+
+.cosmic-illustration {
+    margin-bottom: 2rem;
+}
+
+.chart-circle {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: rotate 20s linear infinite;
+}
+
+.chart-segment {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 2px;
+    background: var(--secondary-color);
+    transform-origin: left center;
+}
+
+.chart-segment:nth-child(1) { transform: rotate(0deg); }
+.chart-segment:nth-child(2) { transform: rotate(90deg); }
+.chart-segment:nth-child(3) { transform: rotate(180deg); }
+.chart-segment:nth-child(4) { transform: rotate(270deg); }
+
+.result-placeholder {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.chart-result {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.chart-result h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary-color);
+}
+
+.chart-signs {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.sign-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.sign-item strong {
+    color: var(--primary-color);
+}
+
+.chart-analysis {
+    text-align: left;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    line-height: 1.8;
+}
+
+/* === FOOTER === */
+.footer {
+    background: var(--darker-bg);
+    padding: 3rem 2rem 1rem;
+    border-top: 1px solid rgba(107, 76, 230, 0.2);
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.footer-section p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: var(--primary-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--gradient-1);
+    border-radius: 50%;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(107, 76, 230, 0.4);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(107, 76, 230, 0.1);
+    color: var(--text-muted);
+}
+
+.footer-bottom i {
+    color: var(--secondary-color);
+}
+
+/* === ANIMATIONS === */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes shootingStar {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(1000px) translateX(500px);
+        opacity: 0;
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-15px); }
+}
+
+@keyframes scroll {
+    0% { transform: translateY(0); }
+    30% { transform: translateY(5px); }
+    60% { transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes planetPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@keyframes moonGlow {
+    0%, 100% { text-shadow: 0 0 10px var(--accent-color); }
+    50% { text-shadow: 0 0 20px var(--accent-color), 0 0 30px var(--accent-color); }
+}
+
+@keyframes sunPulse {
+    0%, 100% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.8); }
+    50% { box-shadow: 0 0 80px rgba(255, 215, 0, 1), 0 0 100px rgba(255, 140, 0, 0.6); }
+}
+
+@keyframes textShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 1024px) {
+    .birth-chart-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .zodiac-wheel {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .solar-system {
+        height: 600px;
+    }
+    
+    .orbit-6 { width: 480px; height: 480px; }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: var(--darker-bg);
+        width: 100%;
+        text-align: center;
+        transition: left 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        padding: 2rem 0;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(8px, -8px);
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .zodiac-wheel {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .zodiac-sign {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .solar-system {
+        height: 400px;
+    }
+    
+    .orbit-5,
+    .orbit-6 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 4rem 1rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .zodiac-cards,
+    .horoscope-grid {
+        grid-template-columns: 1fr;
+    }
+}

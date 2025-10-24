@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Astrology - Your Gateway to the Stars</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="cosmic-loader">
+                <div class="planet"></div>
+                <div class="orbit"></div>
+            </div>
+            <p class="loading-text">Aligning the stars...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-moon"></i>
+                <span>Cosmic Astrology</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#zodiac" class="nav-link">Zodiac</a></li>
+                <li><a href="#horoscope" class="nav-link">Horoscope</a></li>
+                <li><a href="#planets" class="nav-link">Planets</a></li>
+                <li><a href="#birth-chart" class="nav-link">Birth Chart</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="stars-container">
+            <div class="stars"></div>
+            <div class="stars2"></div>
+            <div class="stars3"></div>
+        </div>
+        <div class="shooting-stars">
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="glitch" data-text="Discover Your Cosmic Journey">Discover Your Cosmic Journey</h1>
+            <p class="hero-subtitle fade-in-up">Unlock the secrets of the universe and explore your destiny</p>
+            <button class="cta-button pulse">
+                <span>Explore Now</span>
+                <i class="fas fa-star"></i>
+            </button>
+        </div>
+        <div class="floating-elements">
+            <div class="moon-phase"></div>
+            <div class="constellation constellation-1"></div>
+            <div class="constellation constellation-2"></div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <p>Scroll to explore</p>
+        </div>
+    </section>
+
+    <!-- Zodiac Section -->
+    <section id="zodiac" class="zodiac-section">
+        <div class="section-header">
+            <h2 class="section-title">The Zodiac Wheel</h2>
+            <p class="section-subtitle">Discover the twelve celestial signs</p>
+        </div>
+        
+        <div class="zodiac-wheel-container">
+            <div class="zodiac-wheel">
+                <div class="wheel-center">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="zodiac-signs">
+                    <!-- Zodiac signs will be dynamically generated -->
+                </div>
+            </div>
+        </div>
+
+        <div class="zodiac-cards">
+            <!-- Zodiac cards will be dynamically generated -->
+        </div>
+    </section>
+
+    <!-- Daily Horoscope Section -->
+    <section id="horoscope" class="horoscope-section">
+        <div class="section-header">
+            <h2 class="section-title">Daily Horoscope</h2>
+            <p class="section-subtitle">Your cosmic forecast for today</p>
+        </div>
+        
+        <div class="horoscope-grid">
+            <!-- Horoscope cards will be dynamically generated -->
+        </div>
+    </section>
+
+    <!-- Planetary Positions Section -->
+    <section id="planets" class="planets-section">
+        <div class="section-header">
+            <h2 class="section-title">Planetary Alignments</h2>
+            <p class="section-subtitle">Current positions in our solar system</p>
+        </div>
+        
+        <div class="solar-system">
+            <div class="sun-center">
+                <div class="sun"></div>
+            </div>
+            <div class="orbit-container">
+                <div class="orbit orbit-1">
+                    <div class="planet planet-mercury" data-planet="Mercury">
+                        <span class="planet-name">Mercury</span>
+                    </div>
+                </div>
+                <div class="orbit orbit-2">
+                    <div class="planet planet-venus" data-planet="Venus">
+                        <span class="planet-name">Venus</span>
+                    </div>
+                </div>
+                <div class="orbit orbit-3">
+                    <div class="planet planet-earth" data-planet="Earth">
+                        <span class="planet-name">Earth</span>
+                    </div>
+                </div>
+                <div class="orbit orbit-4">
+                    <div class="planet planet-mars" data-planet="Mars">
+                        <span class="planet-name">Mars</span>
+                    </div>
+                </div>
+                <div class="orbit orbit-5">
+                    <div class="planet planet-jupiter" data-planet="Jupiter">
+                        <span class="planet-name">Jupiter</span>
+                    </div>
+                </div>
+                <div class="orbit orbit-6">
+                    <div class="planet planet-saturn" data-planet="Saturn">
+                        <span class="planet-name">Saturn</span>
+                        <div class="saturn-ring"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="planet-info">
+            <h3>Planetary Influences</h3>
+            <div class="planet-details" id="planet-details">
+                <p>Hover over a planet to see its current influence</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Birth Chart Calculator Section -->
+    <section id="birth-chart" class="birth-chart-section">
+        <div class="section-header">
+            <h2 class="section-title">Birth Chart Calculator</h2>
+            <p class="section-subtitle">Discover your astrological blueprint</p>
+        </div>
+        
+        <div class="birth-chart-container">
+            <div class="chart-form-wrapper">
+                <form id="birth-chart-form" class="birth-chart-form">
+                    <div class="form-group">
+                        <label for="name">
+                            <i class="fas fa-user"></i>
+                            Your Name
+                        </label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birth-date">
+                            <i class="fas fa-calendar"></i>
+                            Birth Date
+                        </label>
+                        <input type="date" id="birth-date" name="birth-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birth-time">
+                            <i class="fas fa-clock"></i>
+                            Birth Time
+                        </label>
+                        <input type="time" id="birth-time" name="birth-time" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birth-place">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Birth Place
+                        </label>
+                        <input type="text" id="birth-place" name="birth-place" required placeholder="City, Country">
+                    </div>
+                    
+                    <button type="submit" class="submit-button">
+                        <span>Calculate Chart</span>
+                        <i class="fas fa-chart-pie"></i>
+                    </button>
+                </form>
+            </div>
+            
+            <div class="chart-result-wrapper" id="chart-result">
+                <div class="chart-result-content">
+                    <div class="cosmic-illustration">
+                        <div class="chart-circle">
+                            <div class="chart-segment"></div>
+                            <div class="chart-segment"></div>
+                            <div class="chart-segment"></div>
+                            <div class="chart-segment"></div>
+                        </div>
+                    </div>
+                    <p class="result-placeholder">Fill out the form to see your birth chart</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-moon"></i> Cosmic Astrology</h3>
+                <p>Your gateway to understanding the celestial influences in your life.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#zodiac">Zodiac Signs</a></li>
+                    <li><a href="#horoscope">Daily Horoscope</a></li>
+                    <li><a href="#planets">Planetary Positions</a></li>
+                    <li><a href="#birth-chart">Birth Chart</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Cosmic Astrology design by SRINIVAS PRASAD. All rights reserved. Made with <i class="fas fa-heart"></i> and stardust.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
