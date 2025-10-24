@@ -200,10 +200,8 @@ Cosmic Astrology is a comprehensive astrology platform that combines beautiful c
 ```
 cosmic-astrology/
 ├── index.html              # Main HTML file
-├── css/
-│   └── style.css          # Complete stylesheet with animations
-├── js/
-│   └── main.js            # Interactive JavaScript functionality
+├── style.css          # Complete stylesheet with animations
+├── main.js            # Interactive JavaScript functionality
 └── README.md              # Project documentation
 ```
 
@@ -353,4 +351,5 @@ To deploy this application:
 **Made with ✨ and cosmic energy**
 
 *Current Version: 1.0.0*  
-*Last Updated: October 24, 2024*
+*Last Updated: October 24, 2025*
+
